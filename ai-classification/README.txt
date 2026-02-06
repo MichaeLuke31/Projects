@@ -1,3 +1,5 @@
+# AI Classification
+
 This is my AI Classification project which was my final project for Artificial intelligence in Fall 2025. 
 
 The code section includes 3 files. Two of the python notebook files are the same, the only difference is one uses 2 epochs, 
