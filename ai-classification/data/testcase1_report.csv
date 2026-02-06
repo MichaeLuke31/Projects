@@ -1,0 +1,17 @@
+model_name,metric_name,score,passed_threshold,threshold_applied,generated_text,reference_text
+GPT,Jaccard,1.0,True,0.6,positive,positive
+GPT,ROUGE_rouge1,1.0,True,0.35,positive,positive
+GPT,ROUGE_rouge2,0.0,False,0.5,positive,positive
+GPT,ROUGE_rougeL,1.0,True,0.5,positive,positive
+Fine-tuned Distilbert,Jaccard,1.0,True,0.6,positive,positive
+Fine-tuned Distilbert,ROUGE_rouge1,1.0,True,0.35,positive,positive
+Fine-tuned Distilbert,ROUGE_rouge2,0.0,False,0.5,positive,positive
+Fine-tuned Distilbert,ROUGE_rougeL,1.0,True,0.5,positive,positive
+Base Distilbert,Jaccard,0.0,False,0.6,negative,positive
+Base Distilbert,ROUGE_rouge1,0.0,False,0.35,negative,positive
+Base Distilbert,ROUGE_rouge2,0.0,False,0.5,negative,positive
+Base Distilbert,ROUGE_rougeL,0.0,False,0.5,negative,positive
+Logistic Regression,Jaccard,1.0,True,0.6,positive,positive
+Logistic Regression,ROUGE_rouge1,1.0,True,0.35,positive,positive
+Logistic Regression,ROUGE_rouge2,0.0,False,0.5,positive,positive
+Logistic Regression,ROUGE_rougeL,1.0,True,0.5,positive,positive
