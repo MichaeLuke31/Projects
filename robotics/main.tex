@@ -1,0 +1,260 @@
+\documentclass[conference]{IEEEtran}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+% \includegraphics[width=\linewidth]{image.png} for single column
+% \includegraphics[width=\textwidth]{image.png} for double column
+
+\title{Deep Learning for Robot Perception}
+
+\author{
+\IEEEauthorblockN{Luke Peter}
+\IEEEauthorblockA{
+University of South Carolina \\
+Email: mp79@email.sc.edu
+}
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Deep learning has become a foundational technology in robot perception and has significantly improved how robots perceive and interact with their environments. This paper presents a survey of deep learning methods applied to key areas of robot perception, including object detection, depth estimation, and scene understanding for navigation and simultaneous localization and mapping (SLAM). Traditional machine learning methods, which rely on hand-crafted features, are compared with new deep learning approaches that learn features directly from data, resulting in improved accuracy and adaptability.\par 
+This paper also explores advanced perception techniques such as multi-modal perception and embodied perception. These techniques show how combining different types of sensor data can enhance a robots perception of the environment, and itself. In addition, the real-world applications of robot-assisted surgery and humanoid robots are explored. These applications will demonstrate the impact that deep learning has in today's massive industries. \par
+Finally, this paper presents observations from the surveyed literature. These observations highlight current trends such as the shift toward deep learning, tradeoffs between computational cost and performance, and practicality challenges related to data requirements and efficient processing. Overall, this survey highlights the significant impact deep learning has had on robot perception, while also identifying limitations and future research directions for improving robustness and efficiency of the deep learning based robot perception methods.
+\end{abstract}
+
+\section{Introduction}
+
+Robot perception is the ability of a robot to sense, and understand its environment using data from visual sensors such as cameras and LiDAR, or even using haptic sensors such as tactile sensors. The ability of a robot to perceive its environment is essential for them to perform tasks such as object recognition, depth perception, and navigation. In modern robotics, robot perception plays an important role by providing information that allows robots to understand abstract environments. Once a robot is able to understand its environment, it can make decisions based on what it knows and execute its goals.
+\par
+Machine learning (ML) is a mathematical method that computers use to learn patterns from data as opposed to being explicitly programmed to do a task. Deep learning (DL) is a kind of machine learning that uses layered neural networks to automatically learn features from large data sets \cite{karoly2020}. Unlike traditional machine learning methods, deep learning models can learn the features and make decisions based on those features at the same time. This makes deep learning very effective for complex tasks that are essential for robots to perceive difficult environments.
+\par
+Deep learning has become increasingly important in robot perception because in the real-world, robotic problems are difficult to describe using exact mathematical models \cite{karoly2020}. Every environment has different colors, shapes, and movements that can be unpredictable. Because of this, robot perception tasks such as object detection, depth estimation, and scene understanding require flexible and adaptive approaches. In recent years, deep learning has been able to help robots solve these challenges. This is mainly due to the availability of large data sets, increase in computational power, and improvements in deep learning algorithms. As a result, deep learning has made a significant impact on the performance of robot perception systems in robotics.
+\par
+This paper conducts a survey of deep learning methods used in robot perception. It begins with background information on deep learning and its early history development. Then, important areas of robot perception are discussed, which includes object detection, depth estimation, and scene understanding for navigation and SLAM. Advanced perception techniques such as multi-modal and embodied perception are also explored. Then recent real-world developments such as robot-assisted surgery and humanoid robotics are discussed. Finally, observations and conclusions are presented to highlight current trends, challenges, and future directions in the field.
+
+\section{Background of Deep Learning in Robot Perception}
+Deep learning has become an important part of robot vision because it has changed the way pattern recognition and classification problems are solved. Instead of relying on hand-crafted features such as HOG, SIFT, or LBP together with statistical classifiers, deep learning methods are able to learn these features and classifiers directly from data \cite{ruiz2018}. This has recently been made possible because of the increase in computational power, the availability of large training datasets, and improvements in neural network training methods. As a result, deep learning has become especially beneficial to use in computer vision tasks such as image classification, object detection, recognition, semantic segmentation, and action recognition \cite{ruiz2018}.
+\par
+Deep learning models are typically built by using an artificial neural network with several hidden layers. As data moves through these hidden layers, the neural networks learns more complex features. This makes these neural networks useful for vision applications because it is usually very difficult to detect these features from image data. Convolutional neural networks (CNNs) are arguably the most important neural network for robot vision because they are particularly effective at processing image data \cite{ruiz2018}. CNNs use local connections and feature maps to detect patterns in images, which allows them to perform well in robot perception tasks that depend on visual data.
+\par
+The history of deep learning in vision goes back many years. Early neural networks were not very robust and were not practical to use in robotics because of hardware constraints and limited availability of data. The proposal of AlexNet, an 8 level CNN, finally changed this and demonstrated that deep networks could outperform traditional feature-based methods by a large margin when it is trained using GPUs and large datasets \cite{ruiz2018}. This success marks the beginning of deep learning models becoming the standard approach in robot perception.
+
+\section{Object Detection}
+Object Detection is a technique that is used in robot perception to classify objects inside three-dimensional data. The conventional method used to achieve these classifications is performed by extracting features from image data and using machine learning to describe these characteristics. The result of these classifications is typically structured as bounding boxes around the objects, although other methods are sometimes used. 
+\par 
+A basic conventional method of classifying objects is achieved through the direct classification of pixels based on color. When objects have a specific set of colors, they can be easily distinguished from their backgrounds and become classified. This method is excellent for rapid processing of images that contain objects that are very different from their backgrounds \cite{masita2020}. Identifying road signs is a great example of where this kind of object detection would perform well, due to the bright colors of road signs, their standard shapes, and the requirement for fast processing.
+\par 
+Some common conventional machine learning methods for object detection include deformable models, sparse linear regression, Bayesian linear regression, and Bayesian logistic regression \cite{masita2020}. These machine learning models function through the use of complex mathematical equations. These models require a large amount of data to be processed for these models to learn and train from. Once these models are trained and fine-tuned, they extract features from sampled data and classify objects based on these features.
+\par
+The biggest issue with these conventional object detection methods is that the majority of them struggle when it comes to identifying more complex objects such as people and vehicles\cite{masita2020}. They also struggle to detect and classify rare objects, unseen objects, or objects in poorly lit or low-definition images. Since conventional machine learning models require training and pre-processing, these methods get very computationally expensive when being used for more complex classes of objects.
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\linewidth]{obj_det.png}
+\caption{A framework for object detection pre-processing and classification. Source: \cite{gui2024} }
+\end{figure*}
+\par
+Deep learning methods were developed with the purpose of improving object detection by addressing critical weaknesses of classical methods. In recent years, object detection has benefited greatly from the application of deep learning, making it one of the most important topics in robot perception.
+\par
+Convolutional neural networks (CNNs) are a deep learning algorithm commonly used in object detection. The region-based convolutional neural network (R-CNN) is one of the most popular two-stage object detection methods\cite{gui2024}. The first stage applies algorithms for proposing region boundaries and passes the proposals to the second stage. The second stage is the classification network. This stage passes each prediction through the CNN. This structure makes the R-CNN significantly more accurate than classical machine learning methods, however it is also very computationally expensive. Since it was introduced, faster variants of R-CNN have been developed, but these variants still have the same underlying issue of requiring predictions to pass through each stage of the CNN \cite{gui2024}.
+\par
+YOLO is a single stage deep learning object detection method that solves this problem, only requiring data to pass through a single neural network layer. The YOLO pipeline works by dividing images into a grid structure, giving a confidence score for each cell, and allowing it to make accurate object boundary predictions and classifications. This structure makes YOLO a highly efficient, state-of-the-art system that is great for processing large amounts of image data \cite{gui2024}. There is a large community of researchers actively working to improve YOLO. The most recent version of YOLO is YOLO26. This new version focuses on making deployment faster and more accessible for low-powered and edge devices \cite{ultralytics}.
+\par
+Object detection is undoubtedly one of the most important topics in robot perception. The shift from the use of traditional machine learning algorithms to deep learning in recent years has raised object detection to a new level of performance and accessibility. As deep learning methods in object detection continue to advance, there is still plenty of room for improvement for these algorithms to increase speed and accuracy. 
+
+\section{Depth Estimation}
+In robot perception, depth estimation is the process of making predictions on the distance of objects from the robot or the camera. The goal of depth perception is to be able to make three-dimensional estimations from two-dimensional data. Depth perception has a wide range of applications in robotics. The ability of a robot to understand an additional dimension of its environment is one of the largest innovations in robot perception.
+\par
+The traditional method of depth estimation is based on taking pictures from multiple different viewpoints, and making geometric calculations to determine shapes and depth in three-dimensional space. These multi-view methods require camera calibration, image matching, triangulation, and filling in empty space with pixels in order to create accurate three-dimensional data \cite{wang2023}. Traditional methods are often slow and not accurate enough to be reliably used in robotics.
+\par
+As opposed to these traditional methods, deep learning can be leveraged to create more accurate 3D reconstruction from 2D images. Instead of processing and comparing multi-view images, deep learning models can train on large amounts of image feature data and learn to make accurate predictions on depth information. As 3D image data continues to become more accessible, and the capabilities and computational power of robots continue to improve, deep learning algorithms are becoming increasingly popular in the field of robot perception. These algorithms can now outperform and overcome the limitations of traditional methods for depth estimation \cite{wang2023}.
+\par
+DepthCues is an emerging benchmark created with the goal to evaluate how well large-scale pre-trained vision models can perceive depth. The benchmark is designed to analyze how well the model can understand monocular depth cues such as  elevation, light and shadow, occlusion, perspective, size, and texture gradient \cite{danier2025}. Each model is fed training and test data sets that are specifically designed to highlight the ability of the model to understand each depth cue individually. Evaluation metrics are used to determine the performance of the model for each depth cue. A few of these metrics include classification accuracy, euclidean distance, and success rate.
+\par
+DepthCues was used to benchmark the abilities of 20 different pre-trained deep learning vision models. As expected, the results of this benchmark showed that the most recent state-of-the-art deep learning models perform the best at estimating depth. However, the results were sometimes surprising. For example, it found that specialized depth estimation models did not always understand depth cues the best as some were outperformed by more general vision models \cite{danier2025}. It suggests that some deep learning models are even able to understand depth cues that humans perceive, with newer models having the greatest capabilities in doing so.
+\par
+Welding is a crucial fabrication process that is widely used in a large number of manufacturing industries. A few of these industries include automotive, aerospace, nuclear, shipbuilding, construction, and medical equipment. The development of depth estimation in robotic welding sensors is essential for the industry. Improving welding sensors enables robotic welding machines to more accurately perceive welding objects and perform welding tasks in areas that are much too dangerous or too difficult for a human to work \cite{wang2023}.
+\par
+The process of using robots in welding includes challenges such as wide variations in objects, poor visibility and sensor interference, and an intricate welding process. Due to the nature of welding, state-of-the-art depth estimation technologies and software are needed for robots to be able to overcome these challenges. Although deep learning does outperform traditional depth estimation methods, it is not always the best solution in welding. For example, support vector machines and random forests are currently more viable solutions for detecting and classifying defects during the welding process \cite{wang2023}. These traditional methods are more viable than deep learning methods in this case because the data is specific and the algorithms are less computationally demanding. Although not always the best method, deep learning for robot depth perception has improved safety and development across a wide range of industries.
+
+\section{Scene Understanding for Navigation and SLAM}
+In robot perception, the ability of a robot to understand its surrounding environment is crucial. It is especially important for robots that have to navigate their environment autonomously to achieve their goals. Autonomous driving has been one of the biggest technological breakthroughs of the past decade, with companies such as Tesla that has seen enormous growth and popularity. Recent advancements in AI and deep learning have been a fundamental part in improving scene understanding in these autonomous driving systems.
+\par
+Simultaneous Localization and Mapping (SLAM) is a technology that allows a robot to understand its surroundings through mapping the environment and keeping track of where it is in relation to the mapped area at the same time. Visual Simultaneous Localization and Mapping (VSLAM) refers to a version of SLAM where the robot uses visual data from cameras to map the environment and keep track of its position. Deep learning has been incorporated into SLAM and VSLAM, unlocking new techniques that have significantly improved the performance and adaptability of robot perception. Although these deep learning techniques have improved scene understanding, some bottlenecks and limitations still exist.
+\par
+In SLAM and VSLAM, the input layer of a deep learning model takes in data from sensors or image data from a camera. The majority of the computation is done in multiple hidden layers, where the input layer feeds the data into. Depending on what type of model is being used, the hidden layers can contain several different types of neural networks and feature extraction methods that are helpful for achieving localization and mapping. Next, the output layer uses this information to create an output, which is typically in the form of a map and the robot's location on that map. Figure 2 contains a basic, understandable visual representation of this deep learning model structure.
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{DL.png}
+\caption{Basic Deep Learning Diagram used in SLAM and VSLAM Source: \cite{hoang2025} }
+\end{figure*}
+\par
+Traditional SLAM methods typically require hand-crafted features to build maps and track movement. Deep learning models are able to automatically extract features from sensor data, making them more efficient for SLAM and VSLAM. Since these features are automatically generated, deep learning excels at adapting to changing and unpredictable environments, which is a crucial function for real-world applications. Additionally, these deep learning algorithms have been observed to support VSLAM in recent works, which improve the robustness and performance of traditional vSLAM algorithms \cite{tang2022}. One of the challenges of deep learning based SLAM methods is that it requires to be trained on a large amount of data in order to see improvements in performance over traditional methods. This causes computations to become expensive and adds delay to these real-time systems. In VSLAM, the cost can become even greater as visual data requires even more processing power. While driving in complex environments, such as during the night or in rain, current monocular vSLAM systems cannot accurately estimate the pose of robots and reconstruct environments \cite{tang2022}.
+\par 
+Forest trail navigation in robotics is useful for applications such as search and rescue and wilderness mapping and navigation. An early example of a deep learning algorithm that outperforms traditional scene understanding and navigation methods is a 2015 study of a quadrotor micro aerial vehicle perceiving forest trails. In this study, the forest trail navigation was approached as an image classification problem \cite{giusti2015}.
+\par
+Obtaining a large enough dataset to train a deep learning model is difficult to achieve in forests due to the randomness of nature. In this study, a sufficient dataset was obtained by strapping multiple camera sensors to a hiker at different angles and recording as the hiker walked the trail. Then, each image was tied to its ground truth classification of the correct direction of the trail. This data was then fed into a DNN deep learning model which could output classifications form forest images. 
+\par
+In order to control the robot, a simple controller was developed to convert the DNN output into simple control steering commands. Under certain ideal conditions such as a wide trail with uniform lighting, the robot was able to successfully navigate the trail for hundreds of meters. However, under less ideal conditions such as bad lighting and narrow trails, frequent crashes occurred. A potential cause of this is due to the low resolution camera used on the quadrotor vehicle in comparison to the go-pro training data resolution. Despite this, the paper concludes that this deep learning system performs better than alternative methods, and is comparable to human performance. Additionally, by operating on the raw image frames, the system is able to bypass a difficult task of manually defining characteristic features of trails \cite{giusti2015}.
+\par
+Recent advancements in autonomous driving cars have been heavily influenced by deep learning for environment understanding and navigation. In recent years, we have seen self-driving cars become more and more popular on public roads. Self-driving autonomous vehicles are achieved by perceiving the environment and choosing an action based on those perceptions. The newest autonomous driving systems train deep learning models on large-scale data, in order to achieve optimal scene understanding and safely navigate roads. The most common deep learning models used in autonomous driving are CNNs, Recurrent Neural Networks (RNNs) and Deep Reinforcement Learning (DRL) \cite{grigorescu2020}. Figure 3 shows an example of how deep learning models are structured in self-driving vehicles.
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{auto.png}
+\caption{Deep learning model for autonomous driving: \cite{grigorescu2020} }
+\end{figure*}
+\par
+Light Detection and Ranging (LiDAR) is the primary sensing device used in autonomous driving. LiDAR sensors acquire three-dimensional data from the environment in the form of 3D point clouds. Cameras are also used as a sensing device, mainly through the collection of 2D images. There are advantages and disadvantage to using both LiDAR and Cameras for autonomous driving. The popular car company Tesla primarily uses cameras for sensing in their cars, while Waymo, another company that develops self-driving technology, elects to use LiDAR as their main sensing technology \cite{grigorescu2020}.
+\par
+LiDAR sensors are widely considered one of the most expensive pieces of equipment on a self-driving car \cite{grigorescu2020}. They are also known to have poor performance in poor weather conditions such as heavy rain. The benefit of using LiDAR sensors over cameras is that they are more precise, and they perform well in both the dark and the daylight. Additionally, LiDAR sensors directly sense 3D information. On the other hand cameras only provide 2D images which must then be processed to make depth estimations to achieve 3D information about the environment. The main benefit of using a camera as the primary sensor is that it is much more cost effective than LiDAR. In order to cover the weaknesses of both of these sensors, Tesla and Waymo add additional sensors such as ultrasonic and radar to their vehicles. These sensors add unique types of useful data that allow vehicles to continue to navigate through poor weather conditions. Both Waymo and Tesla use deep learning techniques to train these computers on large amounts of sensor data, optimizing the vehicles' computer systems for scene understanding. Tesla has the advantage in that its training data consists of information from more than 1 billion driven miles from customers \cite{grigorescu2020}.
+\par
+
+\section{Advanced Perception Techniques}
+Although vision is the most important sense for perception, humans do not solely rely on visual information for perceiving objects. Haptic feedback is another source of information that humans use to perceive the environment. For example, humans use visual information to determine where to move their hand and pick up an object, and then haptic feedback to determine the optimal way to grip the object. Although vision is still present, haptic feedback is also needed for optimal perception of our surroundings. Similarly, perceiving certain types of objects in certain conditions might require a robot to collect haptic data to supplement its visual data. An example of this would be a robot that has to classify identical objects of different weights. It would not be able to perceive the difference in the objects based on visual perception alone. Haptic feedback would allow that robot to perceive the weight of the objects, and thus classify them based on weight.
+\par
+Tactile sensors are a type of haptic sensor that are designed to detect the mechanical pressure being applied to each sensor. This mechanical pressure data can be used to determine features such as the location of the robot being contacted, the shape of the object contacting the sensors, and the magnitude of the contact. Some less popular types of haptic sensors include thermal sensors and vibration sensors. Thermal sensors can detect the temperature of contacts or the environments, and vibration sensors can detect vibration signals. These sensors provide data that can be used for many different applications in robot perception.
+\par
+Similarly to visual perception, tactile data can be gathered and used to train deep learning models. These models are used to make fast, accurate predictions of objects and environments. The data collection of tactile data is more difficult than that of visual data. Unlike vision, tactile perception is intrinsically sequential \cite{navarro2023}. For example, when a robot arm grasps an object, its tactile sensors only make contact with a fraction of the object's surface. This makes it difficult to perceive entire object properties from tactile data.
+\par
+An example of a deep learning multi-modal perception technique was implemented in 2016. In this experiment, haptic data was collected from two BioTac sensors and pre-processed to fit a CNN model. This visual CNN model was pre-trained from the Materials in Context Database. Then, feature vectors were extracted from both the visual and the haptic neural networks and input into a fully-connected classification layer. This multi-modal deep learning system performed three percent better than the best performing uni-modal system, according to the area under curve metric \cite{navarro2023}.
+\par
+The ability of a robot to be aware of its own proprioception is very important in the field of robot perception, and is especially useful for executing SLAM. Robot embodiment perception is a robots ability to understand itself in relation to its environment through the use of visual sensors and data. It allows robots to understand their own position and orientation, as well as the position and orientation of their end effectors. This ability is essential for robots to be able to complete complex tasks in dynamic environments.
+\par 
+Deep learning methods for embodiment perception function similarly to the methods discussed in object detection and depth estimation. Feature data is extracted from images, which is then used to train models to be able to make predictions and classifications. The difference is that the characteristic features are tailored toward camera pose estimation, as opposed to making estimations purely about the environment. This allows the robot to make estimations about its own position and the position.
+\par 
+Robots can also accurately estimate the position of end effectors using these visual methods. These methods improve the adaptability of robots that operate in dynamic and less predictable environments, and lay the foundation
+for intelligent robots that can solve complex problems \cite{wang2025}. Figure 4 depicts a robot using visual data and deep learning to estimate the position of its end effector.
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=\textwidth]{end.png}
+\caption{ Robot estimation of its own end effector using visual sensors\cite{wang2025} }
+\end{figure*}
+
+\section{Applications of Deep Learning in Robot Perception}
+Deep learning has revolutionized nearly every industry in the world through improving robot perception. The medical field is one of the largest and most critical industries in the world. Surgery is arguably the most important application of deep learning, as it can save lives and improve quality of life. Robot Assisted Surgery (RAS) has benefited greatly from the recent developments of deep learning in robot perception. The exponential increase in research in the field has consequently increased the amount of available RAS data, even further improving these methods \cite{hussain2022}. Figure 5 shows the increase in RAS publications by year.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth]{RAS.png}
+\caption{ Number of publications per year in the filed of image-guided
+RAS. \cite{hussain2022} }
+\end{figure}
+\par
+Robot Assisted Surgery systems include the use of a camera for visual data, and mechanical arms with surgical instruments attached. A physician controls these arms using a computer console nearby the surgery procedure in the same room. As surgery is a highly sensitive and intense procedure, RAS serves the purpose of assisting physicians, not replacing them \cite{hussain2022}.
+\par
+A requirement for RAS is that a robot must be able to detect and classify surgical tools. CNN is the most widely used deep learning method for surgical tool detection. CNN is the best model for RAS because it has the ability to perform both multiple tool detection as well as localization. Traditional machine learning models have not been able to sufficiently succeed at these tasks \cite{hussain2022}.
+\par
+Another function of RAS is surgical process. Surgical process includes  Gesture Recognition, Trajectory Segmentation, and Tissue Segmentation. Some important surgical gestures include path planning, needle
+positioning, and continuous tip detection. Deep learning methods have been applied to meet these surgical gesture functionality needs. Multiple studies agreed that the fusion of different types of data yields better accuracy compared to exclusively using visual data from images and videos \cite{hussain2022}. Trajectory segmentation is achieved by using kinematic and image data to analyze the motion of surgical tools. Tissue segmentation includes classifying organs as either healthy or cancerous, as well as detecting the edges of organs and tissues.
+\par
+Surgical process and surgical planning are also crucial tasks that RAS can help with, however this is outside of the scope of robot perception and more fitting for the subject of using of deep learning for planning. RAS is just one example of how deep learning in robot perception is changing the world through saving human lives.
+\par
+A humanoid robot is a robot that is designed to have a similar bodily structure and appearance to the human body, and is intended to have certain human capabilities. Since these robots are built to complete human tasks, they are commonly found in the same environments as humans, and thus frequently have robot to human interactions. Robot perception plays a fundamental role in enabling robots to safely and efficiently interact with human users \cite{roychoudhury2023}.
+\par
+Unlike static objects like walls or moving objects like vehicles, humans are very unpredictable. Because of the unpredictability of human movement and behavior, it is a challenge for humanoid robots to be able to perceive humans in their environment. In order to prioritize safety, a humanoid robot must be able to detect the difference between a person and other objects. Deep learning models are used to extract better features than classical machine learning methods. This allows humanoid robots to better adapt to these rapidly changing environments. Additionally, some humanoid robots use multi-modal sensor and data models to be able to achieve a more accurate understanding of their environment.
+\par
+Deep learning is also used in the social interaction between these robots and humans, however this is outside of the scope of robot perception. This study shows that deep learning in robot perception is not only improving accuracy for things like classification and detecting, but its making robots more aware of different contexts, and more useful for higher level functions in the real world.
+
+\section{Observations with Citations}
+A clear trend observed across these papers is the shift from traditional machine learning methods to deep learning methods in robot perception. Classical methods heavily rely on hand-crafted feature extraction and struggle with complex, dynamic environments. On the other hand, deep learning models are able to automatically learn optimal features directly from data, which significantly improves performance in object detection, depth estimation, and scene understanding tasks \cite{masita2020}, \cite{tang2022}.
+\par
+In object detection, deep learning methods such as convolutional neural networks, R-CNNs, and YOLO demonstrate significant improvements in accuracy and efficiency compared to traditional machine learning methods. R-CNN offers high accuracy at the cost of computational complexity, while YOLO is highly efficient but still has exceptional accuracy \cite{gui2024}. The tradeoff between speed in accuracy is a common occurrence in many robot perception applications.
+\par
+In depth estimation, deep learning methods also outperform traditional approaches by learning depth cues directly from image data. However, results from a recently developed DepthCues benchmark conclude that in some cases, general-purpose vision models outperform specialized depth estimation models \cite{danier2025}. Additionally, real world applications such as robotic welding demonstrate that a mix of traditional machine learning methods and deep learning methods may be better in environments with limited computational resources \cite{wang2023}.
+\par
+In scene understanding and SLAM, deep learning enhances robustness and adaptability by eliminating the need for manual feature selection and enabling better performance in dynamic environments. However, these improvements come at the cost of increased computational requirements and the need for large-scale training data \cite{tang2022}. Furthermore, performance drops in challenging conditions such as low lighting or adverse weather highlight the limitations of current systems.
+\par
+Another important observation is the importance of implementing multi-modal perception in certain applications and environments where visual data is limited. Combining visual and haptic data has been shown to improve perception accuracy compared to strictly visual systems \cite{navarro2023}. Similarly, embodied perception techniques improve a robot’s ability to understand its own position and interaction with the environment, which further improves performance in complex robotic tasks \cite{wang2025}.
+\par
+Deep learning has had a significant impact on fields such as robot-assisted surgery and humanoid robotics. Deep learning is responsible for improved perception capabilities, allowing for more accurate classification, localization, and interaction with humans and environments \cite{hussain2022}, \cite{roychoudhury2023}. However, some challenges still exist in these application such as safety and reliability.
+\par
+Overall, while deep learning has significantly improved robot perception, a few limitations remain. Some of these flaws include high computational costs, dependence on large datasets of real world data, and ability to function efficiently in time sensitive tasks. In the future, research will likely focus on improving accuracy and developing more robust models that can function in unpredictable real world environments.
+
+\section{Conclusion}
+Deep learning has changed the field of robot perception by improving robots' abilities to detect objects, estimate depth, and understand their surrounding environments. Throughout the studies reviewed in this paper, one consistent pattern is that deep learning methods outperform traditional machine learning approaches in robot perception tasks because they can learn useful features from large datasets without relying on hand-crafted feature extraction. This made deep learning an essential part of modern robotic applications that require high accuracy, adaptability, and fast decision making.
+\par
+However, the papers surveyed also show that deep learning is not a perfect solution, and still has some flaws. In several tasks, such as depth estimation and SLAM/VSLAM, the best state-of-the-art methods still face challenges with computational cost, training data requirements, and performance in difficult environments. In some applications, traditional methods may still be better due to limited data or lower computational requirements. These tradeoffs also show that some applications benefited the most from a hybrid of traditional and deep learning models.
+\par
+Overall, the survey highlights the advancements deep learning is currently making in important robot perception applications such as autonomous driving, robot-assisted surgery, humanoid robotics, and multimodal perception. As models continue to become more efficient and accurate, robot perception will likely become more reliable and more widely used in real-world environments. 
+
+
+\begin{thebibliography}{00}
+
+\bibitem{karoly2020}
+A. I. Károly, P. Galambos, J. Kuti, and I. J. Rudas,
+``Deep learning in robotics: Survey on model structures and training strategies,''
+\textit{IEEE Transactions on Systems, Man, and Cybernetics: Systems}, vol. 51, no. 1, pp. 266--279, 2020.
+
+\bibitem{ruiz2018}
+J. Ruiz-del-Solar, P. Loncomilla, and N. Soto,
+``A survey on deep learning methods for robot vision,''
+\textit{arXiv preprint arXiv:1803.10862}, 2018.
+
+\bibitem{gui2024}
+S. Gui, S. Song, R. Qin, and Y. Tang,
+``Remote sensing object detection in the deep learning era—a review,''
+\textit{Remote Sensing}, vol. 16, no. 2, p. 327, 2024.
+
+\bibitem{masita2020}
+K. L. Masita, A. N. Hasan, and T. Shongwe,
+``Deep learning in object detection: A review,''
+in \textit{Proc. 2020 Int. Conf. Artificial Intelligence, Big Data, Computing and Data Communication Systems (icABCD)}, pp. 1--11, 2020.
+
+\bibitem{danier2025}
+D. Danier, M. Aygün, C. Li, H. Bilen, and O. Mac Aodha,
+``DepthCues: Evaluating monocular depth perception in large vision models,''
+in \textit{Proc. IEEE/CVF Conf. Computer Vision and Pattern Recognition (CVPR)}, pp. 20049--20059, 2025.
+
+\bibitem{wang2023}
+J. Wang, L. Li, and P. Xu,
+``Visual sensing and depth perception for welding robots and their industrial applications,''
+\textit{Sensors}, vol. 23, no. 24, p. 9700, 2023.
+
+\bibitem{tang2022}
+Y. Tang, C. Zhao, J. Wang, C. Zhang, Q. Sun, W. X. Zheng, \textit{et al.},
+``Perception and navigation in autonomous systems in the era of learning: A survey,''
+\textit{IEEE Transactions on Neural Networks and Learning Systems}, vol. 34, no. 12, pp. 9604--9624, 2022.
+
+\bibitem{giusti2015}
+A. Giusti, J. Guzzi, D. C. Cireşan, F. L. He, J. P. Rodríguez, F. Fontana, \textit{et al.},
+``A machine learning approach to visual perception of forest trails for mobile robots,''
+\textit{IEEE Robotics and Automation Letters}, vol. 1, no. 2, pp. 661--667, 2015.
+
+\bibitem{grigorescu2020}
+S. Grigorescu, B. Trasnea, T. Cocias, and G. Macesanu,
+``A survey of deep learning techniques for autonomous driving,''
+\textit{Journal of Field Robotics}, vol. 37, no. 3, pp. 362--386, 2020.
+
+\bibitem{hoang2025}
+M. L. Hoang,
+``Unlocking robotic perception: comparison of deep learning methods for simultaneous localization and mapping and visual simultaneous localization and mapping in robot,''
+\textit{International Journal of Intelligent Robotics and Applications}, vol. 9, no. 3, pp. 1011--1043, 2025.
+
+\bibitem{navarro2023}
+N. Navarro-Guerrero, S. Toprak, J. Josifovski, and L. Jamone,
+``Visuo-haptic object perception for robots: an overview,''
+\textit{Autonomous Robots}, vol. 47, no. 4, pp. 377--403, 2023.
+
+\bibitem{wang2025}
+S. Wang, M. N. Nikolić, T. L. Lam, Q. Gao, R. Ding, and T. Zhang,
+``Robot manipulation based on embodied visual perception: A survey,''
+\textit{CAAI Transactions on Intelligence Technology}, vol. 10, no. 4, pp. 945--958, 2025.
+
+\bibitem{hussain2022}
+S. M. Hussain, A. Brunetti, G. Lucarelli, R. Memeo, V. Bevilacqua, and D. Buongiorno,
+``Deep learning based image processing for robot assisted surgery: a systematic literature survey,''
+\textit{IEEE Access}, vol. 10, pp. 122627--122657, 2022.
+
+\bibitem{roychoudhury2023}
+A. Roychoudhury, S. Khorshidi, S. Agrawal, and M. Bennewitz,
+``Perception for humanoid robots,''
+\textit{Current Robotics Reports}, vol. 4, no. 4, pp. 127--140, 2023.
+
+\bibitem{ultralytics}
+Ultralytics,
+``YOLO by Ultralytics,'' [Online]. Available: https://docs.ultralytics.com/. [Accessed: Apr. 8, 2026].
+
+\end{thebibliography}
+
+\end{document}
