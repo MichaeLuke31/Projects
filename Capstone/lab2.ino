@@ -47,50 +47,15 @@ void setup() {
   stopTransaction();  // stop condition
 
 
-  // I2C read from MPU-6050
-  /*
-  startTransaction();  // transaction 1 start
-
-  rw = 0x00;
-  sendAddress(0x68, rw);  // send device address and write
-  if (!readACK()) {
-    Serial.printf("NACK recieved on setup 4\n");
-    return;
-  }
-
-  sendData(0x6B);  // send register address
-  if (!readACK()) { Serial.printf("NACK recieved on setup 5\n"); }
-
-  stopTransaction();
-
-  startTransaction();  // transaction 2 start
-
-  rw = 0x01;
-  sendAddress(0x68, rw);  // send device address and read
-  if (!readACK()) {
-    Serial.printf("NACK recieved on setup 6\n");
-    return;
-  }
-
-  uint8_t data = readData();
-  sendACK(false);  // send NACK to end read
-  stopTransaction();
-*/
-
   Serial.printf("Setup Complete!\n");
 }
-/*
-void loop() {
-  Serial.printf("In loop\n");
-  delayMicroseconds(2000000);
-  return;
-} */
+
 
 void loop() {
 
 
   int16_t accel_xraw, accel_yraw, accel_zraw;  // initialize raw acceleration variables
-  uint8_t raw_data[6];                         // array with 6 bytes of data
+  uint8_t raw_data[6];       // array with 6 bytes of data
 
   startTransaction();
   uint8_t rw = 0x00;
